@@ -5,23 +5,65 @@
  */
 package tn.esprit.africapoticalconflicts;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import tn.esprit.africapoticalconflicts.model.Conflict;
+
 /**
  *
  * @author psn
  */
 public class ConflictsQueries {
     
-    // How many events (Violent & Peaceful ), in total, in country XX?
+    private final String[] event_types = {"battles","riots","explosions/remote violence"}; 
+
+    public ConflictsQueries() {
+    }
     
-    // Whats the most participating actor in Violent/Armed events in Africa?
     
-    // Whats the most participating actor in Violent/Armed events in North Africa?
+    // How many  violent events by country?
+    public List<Conflict> AllViolentEventsByCountry(List<Conflict> list, String country){
+        return list
+                .stream()
+                .filter( e -> e.getCountry().equalsIgnoreCase(country))
+                .filter( e -> e.isViolent())
+                .collect(Collectors.toList());
+    }
     
-    // Whats the most participating actor in Violent/Armed events in country XX?
+    // How many violent events by region?
+    public List<Conflict> AllViolentEventsByRegion(List<Conflict> list, String region){
+        return null;
+    }
     
-    // How many peacefull protests in North Africa?
+    // Whats the most participating actor in violent events by countries?
+    public List<Conflict> MostViolentActorByCountry(List<Conflict> list, String country){
+        return null;
+    }
     
-    // How many fatalities by year in Africa?
+    // Whats the most participating actor in Violent/Armed events by Region?
+    public List<Conflict> MostViolentActorByRegion(List<Conflict> list, String region){
+        return null;
+    }
+    
+    // How many peacefull protests in by region?
+    public List<Conflict> AllPeacefulProtestsByRegion(List<Conflict> list, String region){
+        return null;
+    }
+    
+    //How many peaceful protests by country?
+    public List<Conflict> AllPeacefulProtestsByCountry(List<Conflict> list, String country){
+        return null;
+    }
+    
+    // How many fatalities by year in region?
+    public List<Conflict> CountFatalitiesByYearAndRegion(List<Conflict> list, String region){
+        return null;
+    }
+    
+    // How many fataliries by year in country?
+    public List<Conflict> CountFatalitiesByYearAndCountry(List<Conflict> list, String country){
+        return null;
+    }
     
     // Where were the most fatalties so far?
     

@@ -21,10 +21,19 @@ public class Main {
 
     
     private static Utils utils = new Utils();
+    private static ConflictsQueries queries = new ConflictsQueries();
+    private static List<Conflict> result_list;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException{
+        
+        System.out.println("***********PROGRAM START*************");
+        System.out.println("*************************************");
+        System.out.println("***********PROGRAM START*************");
+        System.out.println("*************************************");
+        
+        
         String filePath = System.getProperty("user.dir") + "/src/main/resources/data.csv";
         
         List<Conflict> list = Files.readAllLines(Paths.get(filePath))
@@ -37,7 +46,18 @@ public class Main {
                                           })
                                          .collect(Collectors.toList());
         
-        list.forEach(System.out::println);
+        list.stream()
+                .filter( e -> e.getEvent_type().equalsIgnoreCase("protests"))
+                .map( (t) -> {
+                    return t.getSub_event_type(); //To change body of generated lambdas, choose Tools | Templates.
+                })
+                .distinct()
+                .forEach(System.out::println);
+        
+        System.out.println("COUNT VIOLENT: ");
+        result_list = queries.AllViolentEventsByCountry(list, "Algeria");
+        result_list.stream().forEach(System.out::println);
+        System.out.println(result_list.stream().count());
 
                //utils.iso_to_country("12");
         

@@ -5,6 +5,9 @@
  */
 package tn.esprit.africapoticalconflicts.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 /**
@@ -49,6 +52,8 @@ public class Conflict {
     private String notes;
     
     private String fatalities;
+    
+    private List<String> searchKeys;
     
 
     public Conflict() {
@@ -219,7 +224,19 @@ public class Conflict {
         this.fatalities = fatalities;
     }
 
-    
+    public boolean isViolent(){
+        searchKeys = new ArrayList<>();
+        searchKeys.add("battles");
+        searchKeys.add("riots");
+        searchKeys.add("explosions/remote violence");
+        if ( searchKeys.contains(event_type.toLowerCase()) ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        
+    }
     
     @Override
     public String toString() {
